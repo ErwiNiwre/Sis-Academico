@@ -1,7 +1,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>INCOS</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -14,18 +14,38 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigationsdsdaaaaaaaaa</span>
       </a>
-
+      <div class="pull-right">
+        <a href="{{ route('login') }}" class="btn btn-default btn-sm">
+          <i class="fa fa-sign-in"></i>
+          <span class="label label-success">Iniciar Sesión</span>
+        </a>
+        <a href="#" class="btn btn-default btn-sm">
+          <i class="fa fa-sign-out"></i>
+          <span class="label label-success">Registrarse</span>
+        </a>
+      </div>
       <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
+      {{-- <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
+          <li class="dropdown user user-menu"> --}}
+            {{-- <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
               <img src="/adminLTE/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">Alexander Pierce</span>
+            </a> --}}
+            {{-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-sign-in"></i>
+              <span class="label label-success">Iniciar Sesión</span>
+            </a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-sign-out"></i>
+              <span class="label label-success">Registrarse</span>
+            </a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs">Iniciar Sesión</span>
             </a>
 
             <ul class="dropdown-menu">
@@ -50,6 +70,6 @@
             </ul>
           </li>
         </ul>
-      </div>
+      </div> --}}
     </nav>
   </header>

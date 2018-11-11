@@ -18,3 +18,8 @@
 Route::get('/', function () {
     return view('layouts.incos_inicio');
 });
+
+//Usuarios
+Route::resource('usuarios','UsuariosController');
+Route::get('login','Auth\LoginController@showLoginForm')->name('login');
+Route::post('login','Auth\LoginController@login')->name('login');
