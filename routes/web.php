@@ -23,3 +23,9 @@ Route::get('/', function () {
 Route::resource('usuarios','UsuariosController');
 Route::get('login','Auth\LoginController@showLoginForm')->name('login');
 Route::post('login','Auth\LoginController@login')->name('login');
+
+// Postulante
+Route::resource('postulantes','PostulantesController');
+Route::get('postulantes/{postulante}/datosNota','PostulantesController@datosNota')->name('postulantes.datosNota');
+Route::patch('postulantes/{postulante}/nota','PostulantesController@nota')->name('postulantes.nota');
+Route::get('postulantes/{carrera}/listacarrera','PostulantesController@listacarrera')->name('postulantes.listacarrera');

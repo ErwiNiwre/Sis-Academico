@@ -375,10 +375,10 @@ class CreacionBaseDatos extends Migration
     
             Schema::create('documentos', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('documento_ci')->nullable();
-                $table->string('certificadoNacimiento')->nullable();
-                $table->string('tituloBachiller')->nullable();
-                $table->string('depositoBancario')->nullable();
+                $table->string('documento_ci')->unique()->nullable();
+                $table->string('certificadoNacimiento')->unique()->nullable();
+                $table->string('tituloBachiller')->unique()->nullable();
+                $table->string('depositoBancario')->unique()->nullable();
                 $table->bigInteger('postulante_id')->unsigned();
                 $table->foreign('postulante_id')->references('id')->on('postulantes');
                 $table->timestamps();
