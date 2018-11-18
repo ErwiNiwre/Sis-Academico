@@ -5,9 +5,14 @@
 <div class="row">
     <div class="col">
         <div class="box box-default">
-            <div class="box-header with-border col-md-12">
-                <h3 class="box-title col-md-6">CARRERA: </h3>
-                <h3 class="box-title col-md-6">TURNO: </h3>
+            <div class="form-group with-border col-md-12">
+                <div class="col-md-6">
+                    <h3 class="box-title col-md-6">CARRERA: {{ $carreras }}</h3>
+                    <h3 class="box-title col-md-6">TURNO: {{ $turnos }}</h3>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="box-title">CUPOS: {{ $cupos->cantidad }}</h3>
+                </div>
             </div>
             <div class="box-body">
                 <div class="box-body table-responsive">
@@ -23,16 +28,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr role="row" class="odd">
-                                <th>N°</th>
-                                <th>PATERNO</th>
-                                <th>MATERNO</th>
-                                <th>NOMBRE</th>
-                                <th>C.I.</th>
-                                <th>OBSERVACIÓN</th>
-                            </tr>
-                            
-                            
+                            @foreach($postulantesapro as $postulante)
+                                <tr role="row" class="odd">
+                                    <td>{{ $i =$i+1 }}</td>
+                                    <td>{{ $postulante->aPaterno }}</td>
+                                    <td>{{ $postulante->aMaterno }}</td>
+                                    <td>{{ $postulante->nombre }}</td>
+                                    <td>{{ $postulante->ci }}</td>
+                                    <td><strong>{{ $postulante->nota }}</strong></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

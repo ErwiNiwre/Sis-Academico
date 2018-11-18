@@ -37,8 +37,8 @@ class Postulante extends Model
         return $query->where('ci', 'LIKE', "%$ci%");
     }
 
-    public function scopeListacarrera($query, $carrera_id)
-    {
-        return $query->where('carrera_id', $carrera_id);
-    }
+    // public function scopeListacarrera($query, $carrera_id)
+    // {
+    //     return $query->where('carrera_id', $carrera_id);
+    // }
 }

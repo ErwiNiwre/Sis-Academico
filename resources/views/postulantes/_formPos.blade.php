@@ -37,6 +37,54 @@
         <div class="box-header with-border">
             <h3 class="box-title">Documentos</h3>
         </div>
+        @if (isset($postulantes))
+        <div class="form-group col-md-12">
+            <div class="col-md-12">
+                <label>
+                    <input type="checkbox" class="icheckbox_flat-green checked" checked disabled>
+                    Cedula de Identidad
+                </label>        
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="col-md-6">
+                <label>
+                    <input type="checkbox" class="icheckbox_flat-green checked" id="cert" name="cert" checked disabled>
+                    Certificado de Nacimiento
+                </label>        
+            </div>
+            <div class="col-md-6">
+                    <input type="text" class="form-control text-uppercase" id="certificadoNacimiento" name="certificadoNacimiento" placeholder="Folio No." value="{{ isset($documentos) ? $documentos->certificadoNacimiento : old('certificadoNacimiento') }}">
+                    {{ $errors->first('certificadoNacimiento') }}
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <div class="col-md-6">
+                <label>
+                    <input type="checkbox" class="icheckbox_flat-green checked" id="tit" name="tit" checked disabled>
+                    Titulo de Bachiller
+                </label>        
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control text-uppercase" id="tituloBachiller" name="tituloBachiller" placeholder="N° Titulo de Bachiller" value="{{ isset($documentos) ? $documentos->tituloBachiller : old('tituloBachiller') }}">
+                {{ $errors->first('tituloBachiller') }}
+            </div>
+        </div>
+        
+        <div class="form-group col-md-12">
+            <div class="col-md-6">
+                <label>
+                    <input type="checkbox" class="icheckbox_flat-green checked" checked disabled>
+                    N° de Deposito Bancario
+                </label>        
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="depositoBancario" name="depositoBancario" placeholder="N° Deposito" value="{{ isset($documentos) ? $documentos->depositoBancario : old('depositoBancario') }}">
+                {{ $errors->first('depositoBancario') }}
+            </div>
+        </div>
+            
+        @else
         <div class="form-group col-md-12">
             <div class="col-md-12">
                 <label>
@@ -82,6 +130,8 @@
                 {{ $errors->first('depositoBancario') }}
             </div>
         </div>
+            
+        @endif
     </div>
     
     <div class="col-md-6">

@@ -31,10 +31,11 @@
                     <div class="col-md-6">
                         <div class="form-group col-md-12">
                             <label>Nota</label>
-                            @if ($postulantes->nota!=null)
+                            @if ($postulantes->nota==0)
                                 <input type="text" class="form-control" id="nota" name="nota" placeholder="Colocar Nota">    
                             @else
                                 <input type="text" class="form-control" id="nota" name="nota" value="{{ $postulantes->nota }}">
+                                {{ $errors->first('nota') }}
                             @endif
                             
                         </div>

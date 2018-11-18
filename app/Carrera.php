@@ -31,4 +31,9 @@ class Carrera extends Model
     {
         return $this->hasMany('App\Postulante');
     }
+
+    public function cupos()
+    {
+        return $this->hasMany('App\Cupo');
+    }
 }

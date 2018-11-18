@@ -10,6 +10,7 @@ use App\Rol;
 use App\Turno;
 use App\Documento;
 use App\User;
+use App\Cupo;
 use App\Http\Requests\PostulanteRequest;
 // use Symfony\Component\HttpFoundation\Request;
 
@@ -23,11 +24,14 @@ class PostulantesController extends Controller
     public function index(Request $request)
     {
         //
+        
         $carreras = Carrera::all();
         $postulantes = Postulante::search($request->ci)->orderBy('id', 'ASC')->paginate(5);
         $postutodo = Postulante::all();
         $turnos = Turno::all();
         $i = 0;
+
+        $total=Postulante::count();
 
         $cont = Postulante::where('carrera_id', '1')->count();
         $secr = Postulante::where('carrera_id', '2')->count();
@@ -38,6 +42,8 @@ class PostulantesController extends Controller
 
         $mañana = Postulante::where('turno_id', '1')->count();
         $noche = Postulante::where('turno_id', '2')->count();
+
+        $cupos=Cupo::all();
 
         // $postulantes->each(function($postulantes){
         //     $postulantes->carreras;
@@ -56,7 +62,9 @@ class PostulantesController extends Controller
             'come' => $come,
             'ling' => $ling,
             'mañana' => $mañana,
-            'noche' => $noche
+            'noche' => $noche,
+            'cupos' => $cupos,
+            'total' => $total
         );
         // return $mañana;
         // return $postulantes;
@@ -115,6 +123,7 @@ class PostulantesController extends Controller
         $postulante->direccion = strtoupper(request()->direccion);
         $postulante->telefono = request()->telefono;
         $postulante->celular = request()->celular;
+        $postulante->nota = 0;
 
         $carrera_id = Carrera::findOrfail($request->carrera);
         $turno_id = Turno::findOrfail($request->turno);
@@ -123,8 +132,8 @@ class PostulantesController extends Controller
         $postulante->usuario_id = $usuario_id->id;
         $postulante->carrera_id = $carrera_id->id;
         $postulante->turno_id = $turno_id->id;
-        // return $estudiante;
-        // $postulante->save();
+        
+        $postulante->save();
 
         $documento = new Documento;
         $documento->documento_ci = request()->ci;
@@ -132,7 +141,7 @@ class PostulantesController extends Controller
         $documento->tituloBachiller = strtoupper(request()->tituloBachiller);
         $documento->depositoBancario = request()->depositoBancario;
 
-        $postulante_id = Postulante::where('ci', $request->ci)->first();
+        $postulante_id = Postulante::where('ci','=', $request->ci)->first();
 
         $documento->postulante_id = $postulante_id->id;
 
@@ -244,7 +253,6 @@ class PostulantesController extends Controller
         $postulante->telefono = request()->telefono;
         $postulante->celular = request()->celular;
 
-
         $carrera_id = Carrera::findOrfail($request->carrera);
         $turno_id = Turno::findOrfail($request->turno);
 
@@ -277,6 +285,7 @@ class PostulantesController extends Controller
 
     public function datosNota($id)
     {
+        
         $postulantes = Postulante::findOrfail($id);
         $departamentos = Departamento::where('id', $postulantes->expedido)->first();
         $datos = array(
@@ -294,6 +303,9 @@ class PostulantesController extends Controller
 
     public function nota(Request $request, $id)
     {
+        $request->validate([
+            'nota'=>'Integer|Min:0|Max:100'
+        ]);
         $postulantes = Postulante::findOrfail($id);
         $postulantes->nota = request()->nota;
         // return "dsdds";
@@ -301,29 +313,33 @@ class PostulantesController extends Controller
         return redirect('/postulantes');
     }
 
-    public function listacarrera()
+    public function listacarrera(Request $request, Cupo $cupo)
     {
-        // return"dsd";
-        // $postulantes = Postulante::listacarrera($request->id)->orderBy('id','ASC');
-        // $carreras=Carrera::findOrfail($request->carrera_id);
-        // foreach ($estudiantes->carreras as $carrera) {
-        //     $carre = $carrera;
-        // }
-        // $bi_notas = $estudiantes->bi_notas;
-        // $materias = Materia::all();
-        // $periodos = Periodo::all();
-        $nombrepdf = "Lista de Estudiantes de la carrera ";
-        // $j = 0;
+        // $cupos=Cupo::all();
+        // return $cupos;
+        $carrera=Carrera::where('id', $request->carrera_id)->first();
+        $turno=Turno::where('id', $request->turno_id)->first();
+        // return $carrer;
+        $cupos=Cupo::where('carrera_id', $carrera->id)->where('turno_id', $turno->id)->first();
+        
+        $postulantesapro=Postulante::where('carrera_id', $carrera->id)->orderBy('nota', 'DESC')->get()->where('turno_id', $turno->id)->take($cupos->cantidad);
+        // return $postulantesapro;
+
+        $carreras = $carrera->carrera;
+        $turnos = $turno->turno; 
+        
+        $nombrepdf = "Lista de Estudiantes de la carrera.pdf";
+        $i = 0;
         $titulo = "Lista de aprobados al examen de admisión";
         return \PDF::loadView(
             'postulantes.listas.carrera',
             compact(
-                // 'postulantes',
-                // 'carreras',
-                // 'bi_notas',
-                // 'materias',
+                'postulantesapro',
+                'carreras',
+                'turnos',
+                'cupos',
                 // 'periodos',
-                // 'j',
+                'i',
                 'titulo'
             )
         )

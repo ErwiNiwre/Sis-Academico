@@ -5,9 +5,36 @@
 @endsection
 @section('content')
 
+<script type="text/javascript">
+  function ShowSelectedCarrera()
+  {
+    /* Para obtener el valor */
+    var carrera_id = document.getElementById("carrera_id").value;
+    alert(carrera_id);
+    $(carrera).val(carrera_id);
+    /* Para obtener el texto */
+    /*var combo = document.getElementById("carrera_id");
+    var selected = combo.options[combo.selectedIndex].text;
+    alert(selected);*/
+  }
+  
+  function ShowSelectedTurno()
+  {
+    /* Para obtener el valor */
+    var turno_id = document.getElementById("turno_id").value;
+    //alert(turno_id);
+    $(turno).val(turno_id);
+    
+    /* Para obtener el texto */
+    /*var combo = document.getElementById("turno_id");
+    var selected = combo.options[combo.selectedIndex].text;
+    alert(selected);*/
+  }
+</script>
+
 <div class="box">
   <div class="box-header with-border">
-    <h3 class="box-title">Postulantes Inscritos</h3>
+    <h3 class="box-title">PRE-INSCRIPCIÓN DE POSTULANTES</h3>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
@@ -15,14 +42,26 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group" id="example1_length">
-            <label>Carreras: </label><br>
-            CONTADURÍA GENERAL:         {{ $cont }}<br>
-            SECRETARIADO EJECUTIVO:     {{ $secr }}<br>
-            SISTEMAS INFORMÁTICOS:      {{ $sist }}<br>
-            ADMINISTRACIÓN DE EMPRESAS: {{ $admi }}<br>
-            COMERCIO EXTERIOR:          {{ $come }}<br>
-            LINGÜÍSTICA:                {{ $ling }}<br>
+            <label>CARRERAS: </label><br>
+              <ul>
+                <ol><strong>CONTADURÍA GENERAL:</strong>         {{ " ".$cont }}</ol>
+                <ol><strong>SECRETARIADO EJECUTIVO:</strong>     {{ " ".$secr }}</ol>
+                <ol><strong>SISTEMAS INFORMÁTICOS:</strong>      {{ " ".$sist }}</ol>
+                <ol><strong>ADMINISTRACIÓN DE EMPRESAS:</strong> {{ " ".$admi }}</ol>
+                <ol><strong>COMERCIO EXTERIOR:</strong>          {{ " ".$come }}</ol>
+                <ol><strong>LINGÜÍSTICA:</strong>                {{ " ".$ling }}</ol>
+              </ul>
+              <label>Total: {{ $total }}</label>
           </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group" id="example1_length">
+              <label>TURNOS: </label><br>
+              <ul>
+                <ol><strong>MAÑANA:</strong>  {{ " ".$mañana }}</ol>
+                <ol><strong>NOCHE:</strong>   {{ " ".$noche }}</ol>
+              </ul>
+            </div>
         </div>
         <div class="col-sm-6">
           {!! Form::open(['route' => 'postulantes.index', 'method'=>'GET', 'class'=>'pull-right']) !!}
@@ -37,7 +76,7 @@
           <div class="dataTables_filter pull-right">
             {{-- <a class="btn btn-social-icon"> --}}
             {{-- <a class="btn btn-default btn-sm" href="{{ url('Docente/registro') }}"> --}}
-            <a class="btn btn-social-icon" href="{{ route('postulantes.create') }}">
+            <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.create') }}">
               <i class="fa fa-plus-square-o"></i>
             </a>
           </div>
@@ -89,7 +128,7 @@
                   </td>
 
                   <td>
-                    @if ($postulante->nota==null)
+                    @if ($postulante->nota==0)
                         <label color="red">Aun no dio la Prueba</label>
                     @else
                       {{ $postulante->nota }}    
@@ -98,11 +137,15 @@
                       
                   <td class="text-center">
                     {{-- <a class="btn btn-social-icon" href="Docentes/{{ $docente['id'] }}/editar"> --}}
-                    <a class="btn btn-social-icon" href="{{ route('postulantes.show', $postulante) }}">
+                    <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.show', $postulante) }}">
                       {{-- <i class="fa fa-edit"></i> --}}
                       <i class="fa fa-file-text"></i>
                     </a>
-                    <a class="btn btn-social-icon" href="{{ route('postulantes.datosNota', $postulante) }}">
+                    <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.edit', $postulante) }}">
+                      {{-- <i class="fa fa-edit"></i> --}}
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.datosNota', $postulante) }}">
                       {{-- <i class="fa fa-edit"></i> --}}
                       <i class="fa fa-arrow-up"></i>
                     </a>
@@ -145,26 +188,28 @@
     <div class="box-header with-border">
       <h3 class="box-title">Informes</h3>
     </div>
-    <form class="form-horizontal" action="" method="POST">
+    @foreach ($cupos as $cupo)
+        
+    @endforeach
+    <form class="form-horizontal" action="{{ route('postulantes.listacarrera') }}" method="GET">
+        {{-- ,['carrera'=>$carrera, 'turno'=>$turno] --}}
       <div class="col-sm-6">
-        <div class="form-group" id="example1_length">
-        {{-- {{ Form::select('carrera', $carrera, null, ['class' => 'form-control select2','placeholder' => 'Select a client...']) }} --}}
+        <div class="form-group">
           <label>Carrera: 
-            {{-- {{ $docentes }} --}}
-            <select  class="form-control">
+            <select  class="form-control" name="carrera_id" id="carrera_id">
+                <option>SELECCIONE CARRERA</option>
               @foreach ($carreras as $carrera)
-                <option value="{{ $carrera->id }}">{{ $carrera->carrera }}</option>    
-              @endforeach
-            </select>  
+                <option value="{{ $carrera->id }}">{{ $carrera->carrera }}</option>
+              @endforeach  
+            </select>
           </label>
         </div>
       </div>
       <div class="col-sm-6">
-        <div class="form-group" id="example1_length">
-          {{-- {{ Form::select('carrera', $carrera, null, ['class' => 'form-control select2','placeholder' => 'Select a client...']) }} --}}
-          <label>Turno: 
-            {{-- {{ $docentes }} --}}
-            <select  class="form-control">
+        <div class="form-group">
+          <label>Turno:
+            <select  class="form-control" name="turno_id" id="turno_id">
+                <option>SELECCIONE TURNO</option>
               @foreach ($turnos as $turno)
                 <option value="{{ $turno->id }}">{{ $turno->turno }}</option>    
               @endforeach
@@ -172,10 +217,22 @@
           </label>
         </div>
       </div>
+      {{--  <a class="btn btn-info pull-right bg-green" href="{{ route('postulantes.listacarrera') }}">  --}}
+          {{-- <i class="fa fa-edit"></i> --}}
+          {{-- <i class="fa fa-arrow-up">GENERAR</i> --}}
+        {{--  </a>     --}}
       <div class="box-footer">
         <button type="submit" class="btn btn-info pull-right">GENERAR</button>
       </div>
     </form>
   </div>
 </div>
+
+<div class="col-md-6"> 
+  {{--  {!! $pie_chart->html() !!}  --}}
+  {{--  {!! $chart->render() !!}  --}}
+</div>
+
+
+  {{--  {!! $pie_chart->script() !!}  --}}
 @endsection

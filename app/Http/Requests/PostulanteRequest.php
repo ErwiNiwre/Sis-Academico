@@ -29,7 +29,7 @@ class PostulanteRequest extends FormRequest
             'tituloBachiller'=>'required|string',
             'depositoBancario'=>'required|numeric',
 
-            'ci'=>'required|integer',
+            'ci'=>'required|unique:users,usuario',
             'expedido'=>'required',
             'aPaterno'=>'required|alpha',
             'aMaterno'=>'required|alpha',

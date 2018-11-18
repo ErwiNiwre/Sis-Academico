@@ -176,7 +176,7 @@ class CreacionBaseDatos extends Migration
                 $table->bigIncrements('id');
                 $table->bigInteger('curso_id')->unsigned();
                 $table->bigInteger('docente_id')->unsigned();
-                $table->bigInteger('materia_id')->unsigned()->nullable();
+                $table->bigInteger('materia_id')->unsigned();
                 $table->foreign('materia_id')->references('id')->on('materias');
                 $table->foreign('curso_id')->references('id')->on('cursos');
                 $table->foreign('docente_id')->references('id')->on('docentes');
