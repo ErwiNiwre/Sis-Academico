@@ -34,18 +34,22 @@ class Curso extends Model
 
     public function estudiantes()
     {
-        return $this->belongsToMany('App\Estudiante','curso_estudiante','curso_id','estudiante_id');
+        return $this->belongsToMany('App\Curso','curso_estudiante','curso_id','estudiante_id')->withPivot('fecha_ins', 'estado')->withTimestamps();
     }
 
     public function docentes()
     {
-        return $this->belongsToMany('App\Docente','curso_docente','curso_id','docente_id');
+        return $this->belongsToMany('App\Docente','curso_docente','curso_id','docente_id')->withTimestamps();
     }
 
     public function materias()
     {
-        return $this->belongsToMany('App\Materia','curso_docente','curso_id','materia_id');
+        return $this->belongsToMany('App\Materia','curso_docente','curso_id','materia_id')->withTimestamps();
     }
 
+    public function carreras()
+    {
+        return $this->belongsTo('App\Carrera');
+    }
     
 }

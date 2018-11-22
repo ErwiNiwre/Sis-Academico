@@ -19,6 +19,11 @@ class Aula extends Model
 
     public function materias()
     {
-        return $this->belongsToMany('App\Materia','aula_materia','aula_id','materia_id');
+        return $this->belongsToMany('App\Materia','aula_materia','aula_id','materia_id')->withTimestamps();
+    }
+
+    public function carreras()
+    {
+        return $this->belongsTo('App\Carrera');
     }
 }

@@ -34,11 +34,11 @@ class Materia extends Model
 
     public function docentes()
     {
-        return $this->belongsToMany('App\Docente','docente_materia','docente_id','materia_id');
+        return $this->belongsToMany('App\Docente','docente_materia','materia_id','docente_id');
     }
 
     public function cursos()
     {
-        return $this->belongsToMany('App\Curso','curso_docente','curso_id','materia_id');
+        return $this->belongsToMany('App\Curso','curso_docente','materia_id','curso_id');
     }
 }

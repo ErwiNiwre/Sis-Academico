@@ -19,7 +19,7 @@ class Carrera extends Model
 
     public function estudiantes()
     {
-        return $this->belongsToMany('App\Estudiante','carrera_estudiante','carrera_id','estudiante_id');
+        return $this->belongsToMany('App\Estudiante','carrera_estudiante','carrera_id','estudiante_id')->withTimestamps();
     }
 
     public function docentes()
@@ -35,5 +35,15 @@ class Carrera extends Model
     public function cupos()
     {
         return $this->hasMany('App\Cupo');
+    }
+
+    public function cursos()
+    {
+        return $this->hasMany('App\Curso');
+    }
+
+    public function aulas()
+    {
+        return $this->hasMany('App\Aula');
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.incos_inicio')
 
 @section('titulo')
-    Lista de Postulantes - Carrera
+    Lista de Estudiantes - Carrera
 @endsection
 @section('content')
 
@@ -34,7 +34,7 @@
 
 <div class="box">
   <div class="box-header with-border">
-    <h3 class="box-title">PRE-INSCRIPCIÓN DE POSTULANTES</h3>
+    <h3 class="box-title">INSCRIPCIÓN DE ESTUDIANTES</h3>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
@@ -43,28 +43,28 @@
         <div class="col-sm-6">
           <div class="form-group" id="example1_length">
             <label>CARRERAS: </label><br>
-              <ul>
+              {{--  <ul>
                 <ol><strong>CONTADURÍA GENERAL:</strong>         {{ " ".$cont }}</ol>
                 <ol><strong>SECRETARIADO EJECUTIVO:</strong>     {{ " ".$secr }}</ol>
                 <ol><strong>SISTEMAS INFORMÁTICOS:</strong>      {{ " ".$sist }}</ol>
                 <ol><strong>ADMINISTRACIÓN DE EMPRESAS:</strong> {{ " ".$admi }}</ol>
                 <ol><strong>COMERCIO EXTERIOR:</strong>          {{ " ".$come }}</ol>
                 <ol><strong>LINGÜÍSTICA:</strong>                {{ " ".$ling }}</ol>
-              </ul>
+              </ul>  --}}
               <label>Total: {{ $total }}</label>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group" id="example1_length">
               <label>TURNOS: </label><br>
-              <ul>
+              {{--  <ul>
                 <ol><strong>MAÑANA:</strong>  {{ " ".$mañana }}</ol>
                 <ol><strong>NOCHE:</strong>   {{ " ".$noche }}</ol>
-              </ul>
+              </ul>  --}}
             </div>
         </div>
         <div class="col-sm-6">
-          {!! Form::open(['route' => 'postulantes.index', 'method'=>'GET', 'class'=>'pull-right']) !!}
+          {!! Form::open(['route' => 'estudiantes.index', 'method'=>'GET', 'class'=>'pull-right']) !!}
             <div class="input-group">
               {!! Form::text('ci', null, ['class' => 'form-control', 'placeholder' => 'Buscar C.I.', 'aria-describedby' => 'search']) !!}
               <span class="input-group-addon" id="search">
@@ -76,7 +76,7 @@
           <div class="dataTables_filter pull-right">
             {{-- <a class="btn btn-social-icon"> --}}
             {{-- <a class="btn btn-default btn-sm" href="{{ url('Docente/registro') }}"> --}}
-            <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.create') }}">
+            <a class="btn btn-social-icon bg-green" href="{{ route('estudiantes.create') }}">
               <i class="fa fa-plus-square-o"></i>
             </a>
           </div>
@@ -96,58 +96,43 @@
                 <th style="width: 80px;">PATERNO</th>
                 <th style="width: 80px;">MATERNO</th>
                 <th style="width: 80px;">CARRERA</th>
-                <th style="width: 80px;">TURNO</th>
-                <th style="width: 80px;">NOTA</th>
                 <th style="width: 150px;">OBSERVACIONES</th>
               </tr>
             </thead>
             <tbody>
-              @if (isset($postulantes))
-                @foreach($postulantes as $postulante)
+              @if (isset($estudiantes))
+                @foreach($estudiantes as $estudiante)
                 <tr role="row" class="odd">
                   <td>{{ $i =$i+1 }}</td>
-                  <td>{{ $postulante->ci }}</td>
-                  <td>{{ $postulante->nombre }}</td>
-                  <td>{{ $postulante->aPaterno }}</td>
-                  <td>{{ $postulante->aMaterno }}</td>
+                  <td>{{ $estudiante->ci }}</td>
+                  <td>{{ $estudiante->nombre }}</td>
+                  <td>{{ $estudiante->aPaterno }}</td>
+                  <td>{{ $estudiante->aMaterno }}</td>
                   <td>
-                    {{--  {{ $postulante->carreras->carrera }}  --}}
-                    @foreach ($carreras as $carrera)
-                      @if($postulante->carrera_id == $carrera->id)
+                    @foreach ($estudiante->carreras as $carrera)
                         {{ $carrera->carrera }}
-                      @endif  
                     @endforeach
                   </td>
-                  <td>
-                    {{--  {{ $postulante->turnos->turno }}  --}}
+                  {{--  <td>
                     @foreach ($turnos as $turno)
                       @if($postulante->turno_id == $turno->id)
                         {{ $turno->turno }}
                       @endif  
                     @endforeach
-                  </td>
-
-                  <td>
-                    @if ($postulante->nota==0)
-                        <label color="red">Aun no dio la Prueba</label>
-                    @else
-                      {{ $postulante->nota }}    
-                    @endif
-                  </td>
-                      
+                  </td>                        --}}
                   <td class="text-center">
                     {{-- <a class="btn btn-social-icon" href="Docentes/{{ $docente['id'] }}/editar"> --}}
-                    <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.show', $postulante) }}">
+                    <a class="btn btn-social-icon bg-green" href="{{ route('estudiantes.show', $estudiante) }}">
                       {{-- <i class="fa fa-edit"></i> --}}
                       <i class="fa fa-file-text"></i>
                     </a>
-                    <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.edit', $postulante) }}">
+                    <a class="btn btn-social-icon bg-green" href="{{ route('estudiantes.edit', $estudiante) }}">
                       {{-- <i class="fa fa-edit"></i> --}}
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a class="btn btn-social-icon bg-green" href="{{ route('postulantes.datosNota', $postulante) }}">
+                    {{--  <a class="btn btn-social-icon bg-green" href="{{ route('estudiantes.datosNota', $estudiante) }}">  --}}
                       {{-- <i class="fa fa-edit"></i> --}}
-                      <i class="fa fa-arrow-up"></i>
+                      {{--  <i class="fa fa-arrow-up"></i>  --}}
                     </a>
                   </td>
                 </tr>
@@ -170,8 +155,7 @@
                 <th>PATERNO</th>
                 <th>MATERNO</th>
                 <th>CARRERA</th>
-                <th>TURNO</th>
-                <th>NOTA</th>
+                {{--  <th>TURNO</th>  --}}
                 <th>OBSERVACIONES</th>
               </tr>
             </tfoot>
@@ -179,7 +163,7 @@
         </div>
       </div>
       <div class="row text-center">
-        {{ $postulantes->render() }}
+        {{ $estudiantes->render() }}
       </div>
     </div>
   </div>
@@ -188,9 +172,9 @@
     <div class="box-header with-border">
       <h3 class="box-title">Informes</h3>
     </div>
-    @foreach ($cupos as $cupo)
+    {{--  @foreach ($cupos as $cupo)
         
-    @endforeach
+    @endforeach  --}}
     <form class="form-horizontal" action="{{ route('postulantes.listacarrera', 1) }}" method="GET">
         {{-- ,['carrera'=>$carrera, 'turno'=>$turno] --}}
       <div class="col-sm-6">

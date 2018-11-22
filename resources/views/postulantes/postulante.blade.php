@@ -225,6 +225,10 @@
         <button type="submit" class="btn btn-info pull-right">GENERAR</button>
       </div>
     </form>
+    <a class="btn btn-social-icon bg-green pull-right" href="{{ route('estudiantes.inscripcionPostulante') }}">
+      {{-- <i class="fa fa-edit"></i> --}}
+      <i class="fa fa-registered"></i>
+    </a>
   </div>
 </div>
 

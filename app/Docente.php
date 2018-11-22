@@ -14,7 +14,7 @@ class Docente extends Model
 
     public function turnos()
     {
-        return $this->belongsToMany('App\Turno','docente_turno','docente_id','turno_id');
+        return $this->belongsToMany('App\Turno','docente_turno','docente_id','turno_id')->withTimestamps();
     }
 
     public function departamentos()
@@ -24,17 +24,17 @@ class Docente extends Model
 
     public function carreras()
     {
-        return $this->belongsToMany('App\Carrera','carrera_docente','docente_id','carrera_id');
+        return $this->belongsToMany('App\Carrera','carrera_docente','docente_id','carrera_id')->withTimestamps();
     }
 
     public function cursos()
     {
-        return $this->belongsToMany('App\Curso','curso_docente','docente_id','curso_id');
+        return $this->belongsToMany('App\Curso','curso_docente','docente_id','curso_id')->withTimestamps();
     }
 
     public function materias()
     {
-        return $this->belongsToMany('App\Materia','docente_materia','docente_id','materia_id');
+        return $this->belongsToMany('App\Materia','docente_materia','docente_id','materia_id')->withTimestamps();
     }
     
     

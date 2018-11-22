@@ -24,9 +24,8 @@ class PostulantesController extends Controller
     public function index(Request $request)
     {
         //
-        
         $carreras = Carrera::all();
-        $postulantes = Postulante::search($request->ci)->orderBy('id', 'ASC')->paginate(5);
+        $postulantes = Postulante::searchp($request->ci)->orderBy('id', 'ASC')->paginate(5);
         $postutodo = Postulante::all();
         $turnos = Turno::all();
         $i = 0;

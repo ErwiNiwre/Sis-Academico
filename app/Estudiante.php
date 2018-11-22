@@ -49,11 +49,16 @@ class Estudiante extends Model
 
     public function cursos()
     {
-        return $this->belongsToMany('App\Curso','curso_estudiante','estudiante_id','curso_id');
+        return $this->belongsToMany('App\Curso','curso_estudiante','estudiante_id','curso_id')->withPivot('fecha_ins', 'estado')->withTimestamps();
     }
 
     public function carreras()
     {
-        return $this->belongsToMany('App\Carrera','carrera_estudiante','estudiante_id','carrera_id');
+        return $this->belongsToMany('App\Carrera','carrera_estudiante','estudiante_id' ,'carrera_id')->withTimestamps();
+    }
+
+    public function scopeSearche($query, $ci)
+    {
+        return $query->where('ci', 'LIKE', "%$ci%");
     }
 }

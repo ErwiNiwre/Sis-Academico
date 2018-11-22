@@ -240,6 +240,11 @@ tr {
   text-align: justify;
 }
 
+.text-vertical{
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+}
+
 .w-10 {
   width: 10%;
 }

@@ -32,7 +32,7 @@ class Postulante extends Model
         return $this->hasMany('App\Documentos');
     }
 
-    public function scopeSearch($query, $ci)
+    public function scopeSearchp($query, $ci)
     {
         return $query->where('ci', 'LIKE', "%$ci%");
     }

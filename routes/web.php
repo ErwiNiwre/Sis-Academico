@@ -40,6 +40,7 @@ Route::patch('postulantes/{postulante}/nota','PostulantesController@nota')->name
 
 // Estudiantes
 // Route::resource('estudiantes','EstudiantesController');
+// Route::get('estudiantes/prueba','EstudiantesController@prueba')->name('estudiantes.prueba');
 Route::get('estudiantes','EstudiantesController@index')->name('estudiantes.index');
 Route::get('estudiantes/inscribirPos','EstudiantesController@inscribirPos')->name('estudiantes.inscribirPos');
 Route::get('estudiantes/inscripcionPostulante','EstudiantesController@inscripcionPostulante')->name('estudiantes.inscripcionPostulante');                     //Muestra a todos los docentes
@@ -49,5 +50,6 @@ Route::get('estudiantes/{estudiante}','EstudiantesController@show')->name('estud
 Route::get('estudiantes/{estudiante}/edit','EstudiantesController@edit')->name('estudiantes.edit');      //Edita a uno de los docentes
 Route::patch('estudiantes/{estudiantes}','EstudiantesController@update')->name('estudiantes.update');       //Actualiza a uno de los docentes
 Route::delete('estudiantes/{estudiantes}','EstudiantesController@destroy')->name('estudiantes.destroy');    //Elimina a uno de los docentes
+
 
 
