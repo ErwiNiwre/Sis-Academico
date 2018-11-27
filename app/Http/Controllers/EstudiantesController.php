@@ -16,11 +16,18 @@ use App\Materia;
 use App\Curso;
 use App\Nivel;
 use App\Aula;
+use App\Periodo;
+use App\Bi_nota;
 use Carbon\Carbon;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class EstudiantesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -115,6 +122,29 @@ class EstudiantesController extends Controller
     public function show($id)
     {
         //
+        $estudiantes = Estudiante::findOrfail($id);
+        $departamentos = Departamento::where('id', $estudiantes->expedido)->first();
+        $carreras=Carrera::all();
+        $turnos=Turno::all();
+        $paralelos=Paralelo::all();
+        $cursos=Curso::all();
+        $aulas=Aula::all();
+        $materias=Materia::all();
+        $niveles=Nivel::all();
+        $sw=0;
+        $datos = array(
+            'estudiantes' => $estudiantes,
+            'turnos' => $turnos,
+            'paralelos' => $paralelos,
+            'cursos' => $cursos,
+            'aulas' => $aulas,
+            'materias' => $materias,
+            'niveles' =>$niveles,
+            'departamentos' => $departamentos,
+            'sw'=>$sw
+        );
+        // return $usuarios;
+        return view('estudiantes.estudiante_datos')->with($datos);
     }
 
     /**
@@ -406,6 +436,65 @@ class EstudiantesController extends Controller
                     foreach($materiasSis as $materia){
                         $aulas=Aula::where('id', $sisM)->first();
                         $aulas->materias()->attach($materia->id);
+                        // Primer Bimestre
+                        $bi_notas1=new Bi_nota;
+                        $bi_notas1->asistencia=0;
+                        $bi_notas1->investigacion_productiva=0;
+                        $bi_notas1->participacion_constructiva=0;
+                        $bi_notas1->taller_laboratorios=0;
+                        $bi_notas1->evaluacion=0;
+                        $bi_notas1->puntaje_total=0;
+                        $bi_notas1->segundo_turno=0;
+                        // $bi_notas1->observacion=null;
+                        $bi_notas1->estudiante_id=$estudiante->id;
+                        $bi_notas1->materia_id=$materia->id;
+                        $bi_notas1->periodo_id=1;
+                        $bi_notas1->save();
+
+                        // Segundo Bimestre
+                        $bi_notas2=new Bi_nota;
+                        $bi_notas2->asistencia=0;
+                        $bi_notas2->investigacion_productiva=0;
+                        $bi_notas2->participacion_constructiva=0;
+                        $bi_notas2->taller_laboratorios=0;
+                        $bi_notas2->evaluacion=0;
+                        $bi_notas2->puntaje_total=0;
+                        $bi_notas2->segundo_turno=0;
+                        // $bi_notas2->observacion=null;
+                        $bi_notas2->estudiante_id=$estudiante->id;
+                        $bi_notas2->materia_id=$materia->id;
+                        $bi_notas2->periodo_id=2;
+                        $bi_notas2->save();
+
+                        // Tercer Bimestre
+                        $bi_notas3=new Bi_nota;
+                        $bi_notas3->asistencia=0;
+                        $bi_notas3->investigacion_productiva=0;
+                        $bi_notas3->participacion_constructiva=0;
+                        $bi_notas3->taller_laboratorios=0;
+                        $bi_notas3->evaluacion=0;
+                        $bi_notas3->puntaje_total=0;
+                        $bi_notas3->segundo_turno=0;
+                        // $bi_notas3->observacion=null;
+                        $bi_notas3->estudiante_id=$estudiante->id;
+                        $bi_notas3->materia_id=$materia->id;
+                        $bi_notas3->periodo_id=3;
+                        $bi_notas3->save();
+
+                        // Cuarto Bimestre
+                        $bi_notas4=new Bi_nota;
+                        $bi_notas4->asistencia=0;
+                        $bi_notas4->investigacion_productiva=0;
+                        $bi_notas4->participacion_constructiva=0;
+                        $bi_notas4->taller_laboratorios=0;
+                        $bi_notas4->evaluacion=0;
+                        $bi_notas4->puntaje_total=0;
+                        $bi_notas4->segundo_turno=0;
+                        // $bi_notas4->observacion=null;
+                        $bi_notas4->estudiante_id=$estudiante->id;
+                        $bi_notas4->materia_id=$materia->id;
+                        $bi_notas4->periodo_id=4;
+                        $bi_notas4->save();
                     }
                 } else {
                     $curso = Curso::where('paralelo_id', $sisM)->where('turno_id', 1)->where('carrera_id', 3)->first();
@@ -627,9 +716,77 @@ class EstudiantesController extends Controller
 
         return "holaaaaaaaaaaaaaaaaaaa";
     }
+    
+    public function formulario($id)
+    {
+        $estudiantes = Estudiante::findOrfail($id);
+        $departamentos = Departamento::where('id', $estudiantes->expedido)->first();
+        $carreras=Carrera::all();
+        $turnos=Turno::all();
+        $paralelos=Paralelo::all();
+        $cursos=Curso::all();
+        $aulas=Aula::all();
+        $materias=Materia::all();
+        $niveles=Nivel::all();
+        $sw=0;
+        // $datos = array(
+        //     'estudiantes',
+        //     'turnos',
+        //     'paralelos',
+        //     'cursos',
+        //     'aulas',
+        //     'materias',
+        //     'departamentos',
+        //     'sw'
+        // );
+        $nombrepdf = "Formulario de Inscripción.pdf";
+        $i = 0;
+        $titulo = "Formulario de Inscripción";
+        return \PDF::loadView(
+            'estudiantes.formularios.formulario',
+            compact(
+                'estudiantes',
+                'turnos',
+                'paralelos',
+                'cursos',
+                'aulas',
+                'materias',
+                'niveles',
+                'departamentos',
+                'sw',
+                'titulo'
+            )
+        )
+            ->setPaper('letter')
+            ->setOption('encoding', 'utf-8')
+            ->setOption('footer-right', 'Pagina [page] de [toPage]')
+            ->setOption('footer-left', 'INCOS EL ALTO - 2018')
+            ->stream("$nombrepdf");
+    }
+
+    public function pensum($id)
+    {
+        // $carreras = Carrera::all();
+        $estudiantes = Estudiante::findOrfail($id);
+        // $carreras = Carrera::where('id', $estudiantes->carreras;
+        //return $estudiantes->carreras;
+        foreach ($estudiantes->carreras as $carrera) {
+            $carre = $carrera;
+        }
+        $materias = Materia::where('carrera_id', $carre->id)->get();
+        $j = 0;
+        $datos = array(
+            'carreras' => $carre,
+            'materias' => $materias,
+            'estudiantes' => $estudiantes,
+            'j' => $j
+        );
+        return view('pensums.pensum')->with($datos);
+    }
 
     public function prueba()
     {
+        
         $nombrepdf = "Lista de Estudiantes de la carrera.pdf";
         $i = 0;
         $titulo = "Lista de aprobados al examen de admisión";

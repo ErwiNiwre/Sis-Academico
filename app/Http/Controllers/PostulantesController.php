@@ -16,6 +16,10 @@ use App\Http\Requests\PostulanteRequest;
 
 class PostulantesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +29,7 @@ class PostulantesController extends Controller
     {
         //
         $carreras = Carrera::all();
-        $postulantes = Postulante::searchp($request->ci)->orderBy('id', 'ASC')->paginate(5);
+        $postulantes = Postulante::searchp($request->ci)->orderBy('aPaterno', 'ASC')->paginate(5);
         $postutodo = Postulante::all();
         $turnos = Turno::all();
         $i = 0;
@@ -289,11 +293,6 @@ class PostulantesController extends Controller
         $departamentos = Departamento::where('id', $postulantes->expedido)->first();
         $datos = array(
             'postulantes' => $postulantes,
-            // 'usuario_id'=>$usuario_id,
-            // 'rol_id'=>$rol_id,
-            // 'carrera_id'=>$carrera_id,
-            // 'turno_id'=>$turno_id,
-            // 'documentos'=>$documentos,
             'departamentos' => $departamentos
         );
         // return $postulantes;
@@ -307,7 +306,7 @@ class PostulantesController extends Controller
         ]);
         $postulantes = Postulante::findOrfail($id);
         $postulantes->nota = request()->nota;
-        // return "dsdds";
+        
         $postulantes->save();
         return redirect('/postulantes');
     }

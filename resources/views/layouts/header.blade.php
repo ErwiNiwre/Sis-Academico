@@ -15,14 +15,37 @@
         <span class="sr-only">Toggle navigationsdsdaaaaaaaaa</span>
       </a>
       <div class="pull-right">
-        <a href="{{ route('login') }}" class="btn btn-default btn-sm">
+        <ul class="nav navbar-nav navbar-right">
+            @guest
+                <li><a href="{{ route('login') }}">Iniciar Sesión</a></li>
+                <li><a href="{{ route('register') }}">Registrarse</a></li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                        Usuario: {{ Auth::user()->usuario }}<span class="caret"></span>
+                    </a>            <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                Cerrar Sesión
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @endguest
+        </ul>
+        {{-- <a href="{{ route('login') }}" class="btn btn-default btn-sm">
           <i class="fa fa-sign-in"></i>
           <span class="label label-success">Iniciar Sesión</span>
         </a>
         <a href="#" class="btn btn-default btn-sm">
           <i class="fa fa-sign-out"></i>
           <span class="label label-success">Registrarse</span>
-        </a>
+        </a> --}}
       </div>
       <!-- Navbar Right Menu -->
       {{-- <div class="navbar-custom-menu">

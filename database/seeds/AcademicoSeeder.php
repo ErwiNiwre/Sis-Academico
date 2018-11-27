@@ -148,20 +148,28 @@ class AcademicoSeeder extends Seeder
 
         ]);
 
-        // DB::table('cupos')->insert([
-        //     ['id' => '1', 'cantidad' => '2', 'paralelos_cant' => '1', 'nivel' => '1', 'carrera_id' => '1', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '2', 'cantidad' => '3', 'paralelos_cant' => '2', 'nivel' => '1', 'carrera_id' => '1', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '3', 'cantidad' => '23', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '2', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '4', 'cantidad' => '4', 'paralelos_cant' => '2', 'nivel' => '1', 'carrera_id' => '2', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '5', 'cantidad' => '3', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '3', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '6', 'cantidad' => '23', 'paralelos_cant' => '4', 'nivel' => '1', 'carrera_id' => '3', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '7', 'cantidad' => '32', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '4', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '8', 'cantidad' => '23', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '4', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '9', 'cantidad' => '4', 'paralelos_cant' => '2', 'nivel' => '1', 'carrera_id' => '5', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '10', 'cantidad' => '3', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '5', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '11', 'cantidad' => '23', 'paralelos_cant' => '4', 'nivel' => '1', 'carrera_id' => '6', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        //     ['id' => '12', 'cantidad' => '32', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '6', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
-        // ]);
+        DB::table('cupos')->insert([
+            ['id' => '1', 'cantidad' => '2', 'paralelos_cant' => '1', 'nivel' => '1', 'carrera_id' => '1', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '2', 'cantidad' => '3', 'paralelos_cant' => '2', 'nivel' => '1', 'carrera_id' => '1', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '3', 'cantidad' => '23', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '2', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '4', 'cantidad' => '4', 'paralelos_cant' => '2', 'nivel' => '1', 'carrera_id' => '2', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '5', 'cantidad' => '3', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '3', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '6', 'cantidad' => '23', 'paralelos_cant' => '4', 'nivel' => '1', 'carrera_id' => '3', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '7', 'cantidad' => '32', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '4', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '8', 'cantidad' => '23', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '4', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '9', 'cantidad' => '4', 'paralelos_cant' => '2', 'nivel' => '1', 'carrera_id' => '5', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '10', 'cantidad' => '3', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '5', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '11', 'cantidad' => '23', 'paralelos_cant' => '4', 'nivel' => '1', 'carrera_id' => '6', 'turno_id' => '1', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['id' => '12', 'cantidad' => '32', 'paralelos_cant' => '3', 'nivel' => '1', 'carrera_id' => '6', 'turno_id' => '2', 'estado' => 'true', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+        ]);
+    
+        DB::table('users')->insert([
+            ['usuario' => 'AD-68', 'password' => '$2y$10$ylxNeSZSNlRbgwy5ab1jsOHnAGv6FpPz9pzgB86V7MuyGjRtcBDs.', 'rol_id'=>'1', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['usuario' => 'RE-68', 'password' => '$2y$10$ylxNeSZSNlRbgwy5ab1jsOHnAGv6FpPz9pzgB86V7MuyGjRtcBDs.', 'rol_id'=>'2', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['usuario' => 'DI-68', 'password' => '$2y$10$ylxNeSZSNlRbgwy5ab1jsOHnAGv6FpPz9pzgB86V7MuyGjRtcBDs.', 'rol_id'=>'3', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['usuario' => 'SE-68', 'password' => '$2y$10$ylxNeSZSNlRbgwy5ab1jsOHnAGv6FpPz9pzgB86V7MuyGjRtcBDs.', 'rol_id'=>'4', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+            ['usuario' => 'DO-68', 'password' => '$2y$10$ylxNeSZSNlRbgwy5ab1jsOHnAGv6FpPz9pzgB86V7MuyGjRtcBDs.', 'rol_id'=>'5', 'created_at' => '2018/09/11', 'updated_at' => '2018/09/11'],
+        ]);
 
 
     }

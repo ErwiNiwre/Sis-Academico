@@ -17,7 +17,7 @@
         {{-- ,['carrera'=>$carrera, 'turno'=>$turno] --}}
       <div class="col-sm-6">
         <div class="form-group">
-          <label>Carrera: 
+          <label>Carrera:
             <select  class="form-control" name="carrera_id" id="carrera_id">
                 <option>SELECCIONE CARRERA</option>
               @foreach ($carreras as $carrera)

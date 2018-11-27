@@ -14,15 +14,17 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Auth::routes();
 
 Route::get('/', function () {
     return view('layouts.incos_inicio');
 });
 
 //Usuarios
-Route::resource('usuarios','UsuariosController');
+// Route::resource('usuarios','UsuariosController');
 Route::get('login','Auth\LoginController@showLoginForm')->name('login');
 Route::post('login','Auth\LoginController@login')->name('login');
+Route::post('logout','Auth\LoginController@logout')->name('logout');
 
 // Postulante
 // Route::resource('postulantes','PostulantesController');
@@ -48,8 +50,21 @@ Route::get('estudiantes/create','EstudiantesController@create')->name('estudiant
 Route::post('estudiantes', 'EstudiantesController@store')->name('estudiantes.store');                   //Guarda un nuevo docentes
 Route::get('estudiantes/{estudiante}','EstudiantesController@show')->name('estudiantes.show');             //Muestra a un docentes
 Route::get('estudiantes/{estudiante}/edit','EstudiantesController@edit')->name('estudiantes.edit');      //Edita a uno de los docentes
-Route::patch('estudiantes/{estudiantes}','EstudiantesController@update')->name('estudiantes.update');       //Actualiza a uno de los docentes
-Route::delete('estudiantes/{estudiantes}','EstudiantesController@destroy')->name('estudiantes.destroy');    //Elimina a uno de los docentes
+Route::patch('estudiantes/{estudiante}','EstudiantesController@update')->name('estudiantes.update');       //Actualiza a uno de los docentes
+Route::delete('estudiantes/{estudiante}','EstudiantesController@destroy')->name('estudiantes.destroy');    //Elimina a uno de los docentes
+Route::get('estudiantes/{estudiante}/formulario','EstudiantesController@formulario')->name('estudiantes.formulario');
+Route::get('estudiantes/{estudiante}/pensum','EstudiantesController@pensum')->name('estudiantes.pensum');
 
 
 
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

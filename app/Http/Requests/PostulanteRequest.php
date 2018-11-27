@@ -39,7 +39,7 @@ class PostulanteRequest extends FormRequest
             'estadoCivil'=>'required',
             'correo'=>'required|email',
             'direccion'=>'required|string',
-            'telefono'=>'required|numeric',
+            'telefono'=>'numeric',
             'celular'=>'required|numeric',
 
             'carrera'=>'required',
