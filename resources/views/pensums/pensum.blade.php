@@ -107,7 +107,7 @@
                         </thead>
                         <tbody>
                             @foreach($materias as $i => $materia)
-                                @if ($materia->nivel_id==3 and $materia->tipo== 'TRIMESTRE')
+                                @if ($materia->nivel_id==3 and ($materia->tipo== 'TRIMESTRE' or $materia->tipo== 'BIMESTRE'))
                                     <tr role="row" class="odd">
                                         <td>{{ $j = $j+1}}</td>
                                         <td>{{ $materia->sigla }}</td>

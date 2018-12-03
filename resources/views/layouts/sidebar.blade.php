@@ -161,7 +161,7 @@
         <li><a href="#"><i class="fa fa-newspaper-o"></i> <span>Cursos</span></a></li>
         <li><a href="#"><i class="fa fa-newspaper-o"></i> <span>Horario</span></a></li>
         <li><a href="#"><i class="fa fa-info-circle"></i> <span>Nota</span></a></li>
-        <li><a href="#"><i class="fa fa-info-circle"></i> <span>Historial Academico</span></a></li>
+        <li><a href="{{ route('estudiantes.historial', $estudiantes) }}"><i class="fa fa-info-circle"></i> <span>Historial Academico</span></a></li>
         @if (Auth::user()->rol_id==6)
           <li><a href="{{ route('estudiantes.pensum', $estudiantes) }}"><i class="fa fa-info-circle"></i> <span>Pensum</span></a></li>
         @endif

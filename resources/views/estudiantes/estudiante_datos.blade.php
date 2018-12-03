@@ -8,17 +8,12 @@
 <div class="box box-default">
     <div class="box-header with-border">
         <h3 class="box-title">ESTUDIANTE</h3>
+        <a class="btn btn-file bg-green pull-right" href="{{ route('estudiantes.formulario', $estudiantes) }}">
+            <i class="fa fa-print"> Formulario</i>
+        </a>
     </div>
     <div class="box-body">
         @include('estudiantes.index')
-        <div class="col-md-12">
-            <div class="form-group">
-                <a class="btn btn-social-icon bg-green pull-right" href="{{ route('estudiantes.formulario', $estudiantes) }}">
-                {{-- <i class="fa fa-edit"></i> --}}
-                    <i class="fa fa-registered"></i>
-                </a>
-            </div>                
-        </div>
     </div>
 </div>
 

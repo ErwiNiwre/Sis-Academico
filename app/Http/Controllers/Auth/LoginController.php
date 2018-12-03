@@ -56,7 +56,7 @@ class LoginController extends Controller
                                 return "/";
                             } else {
                                 if (auth()->user()->rol_id==5) {
-                                    return "PPPPPP";
+                                    return "/";
                                 } else {
                                     if (auth()->user()->rol_id==6) {
                                         $usr=Auth::user()->id;

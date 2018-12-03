@@ -38,6 +38,7 @@ Route::patch('postulantes/{postulante}','PostulantesController@update')->name('p
 Route::delete('postulantes/{postulante}','PostulantesController@destroy')->name('postulantes.destroy');    //Elimina a uno de los docentes
 Route::get('postulantes/{postulante}/datosNota','PostulantesController@datosNota')->name('postulantes.datosNota');
 Route::patch('postulantes/{postulante}/nota','PostulantesController@nota')->name('postulantes.nota');
+Route::get('postulantes/{postulante}/formulario','PostulantesController@formulario')->name('postulantes.formulario');
 
 
 // Estudiantes
@@ -54,6 +55,19 @@ Route::patch('estudiantes/{estudiante}','EstudiantesController@update')->name('e
 Route::delete('estudiantes/{estudiante}','EstudiantesController@destroy')->name('estudiantes.destroy');    //Elimina a uno de los docentes
 Route::get('estudiantes/{estudiante}/formulario','EstudiantesController@formulario')->name('estudiantes.formulario');
 Route::get('estudiantes/{estudiante}/pensum','EstudiantesController@pensum')->name('estudiantes.pensum');
+Route::get('estudiantes/{estudiante}/boletin','EstudiantesController@boletin')->name('estudiantes.boletin');
+Route::get('estudiantes/{estudiante}/historial','EstudiantesController@historial')->name('estudiantes.historial');
+
+// Docente
+Route::get('docentes','DocentesController@index')->name('docentes.index');
+Route::get('docentes/form_cargar_nota','DocentesController@form_cargar_nota')->name('docentes.form_cargar_nota');
+Route::post('docentes/cargar_nota', 'DocentesController@cargar_nota')->name('docentes.cargar_nota');
+Route::get('docentes/create','DocentesController@create')->name('docentes.create');             //Muestra el formulario para crear un nuevo docentes
+Route::post('docentes', 'DocentesController@store')->name('docentes.store');                   //Guarda un nuevo docentes
+Route::get('docentes/{docente}','DocentesController@show')->name('docentes.show');             //Muestra a un docentes
+Route::get('docentes/{docente}/edit','DocentesController@edit')->name('docentes.edit');      //Edita a uno de los docentes
+Route::patch('docentes/{docente}','DocentesController@update')->name('docentes.update');       //Actualiza a uno de los docentes
+Route::delete('docentes/{docente}','DocentesController@destroy')->name('docentes.destroy');    //Elimina a uno de los docentes
 
 
 

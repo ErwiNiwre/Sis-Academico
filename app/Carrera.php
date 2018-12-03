@@ -24,7 +24,7 @@ class Carrera extends Model
 
     public function docentes()
     {
-        return $this->belongsToMany('App\Docente','carrera_docente','carrera_id','docente_id');
+        return $this->belongsToMany('App\Docente','carrera_docente','carrera_id','docente_id')->withTimestamps();;
     }
 
     public function postulantes()

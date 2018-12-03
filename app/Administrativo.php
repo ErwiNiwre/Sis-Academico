@@ -24,6 +24,6 @@ class Administrativo extends Model
 
     public function turnos()
     {
-        return $this->belongsToMany('App\Turno','administrativo_turno','administrativo_id','turno_id');
+        return $this->belongsToMany('App\Turno','administrativo_turno','administrativo_id','turno_id')->withTimestamps();;
     }
 }

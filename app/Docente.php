@@ -29,7 +29,7 @@ class Docente extends Model
 
     public function cursos()
     {
-        return $this->belongsToMany('App\Curso','curso_docente','docente_id','curso_id')->withTimestamps();
+        return $this->belongsToMany('App\Curso','curso_docente','docente_id','materia_id','curso_id')->withTimestamps();
     }
 
     public function materias()

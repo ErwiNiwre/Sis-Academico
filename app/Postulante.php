@@ -34,7 +34,10 @@ class Postulante extends Model
 
     public function scopeSearchp($query, $ci)
     {
-        return $query->where('ci', 'LIKE', "%$ci%");
+        return $query->where('ci', 'LIKE', "%$ci%")
+                     ->orWhere('nombre', 'LIKE', "%".strtoupper($ci)."%")
+                     ->orWhere('aPaterno', 'LIKE', "%".strtoupper($ci)."%")
+                     ->orWhere('aMaterno', 'LIKE', "%".strtoupper($ci)."%");
     }
 
     // public function scopeListacarrera($query, $carrera_id)

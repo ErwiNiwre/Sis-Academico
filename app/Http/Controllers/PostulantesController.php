@@ -347,4 +347,35 @@ class PostulantesController extends Controller
             ->setOption('footer-left', 'INCOS EL ALTO - 2018')
             ->stream("$nombrepdf");
     }
+
+    public function formulario($id)
+    {
+        $postulantes = Postulante::findOrfail($id);
+        $usuario_id = User::where('id', $postulantes->usuario_id)->first();
+        $rol_id = Rol::where('id', $usuario_id->rol_id)->first();
+        $carrera_id = Carrera::where('id', $postulantes->carrera_id)->first();
+        $turno_id = Turno::where('id', $postulantes->turno_id)->first();
+        $documentos = Documento::where('postulante_id', $postulantes->id)->first();
+        $departamentos = Departamento::where('id', $postulantes->expedido)->first();
+
+        $nombrepdf = "Formulario de Inscripción.pdf";
+        $i = 0;
+        $titulo = "Formulario de Inscripción Postulante";
+        return \PDF::loadView(
+            'postulantes.formularios.formulario',
+            compact(
+                'postulantes',
+                'carrera_id',
+                'turno_id',
+                'documentos',
+                'departamentos',
+                'titulo'
+            )
+        )
+            ->setPaper('letter')
+            ->setOption('encoding', 'utf-8')
+            ->setOption('footer-right', 'Pagina [page] de [toPage]')
+            ->setOption('footer-left', 'INCOS EL ALTO - 2018')
+            ->stream("$nombrepdf");
+    }
 }
