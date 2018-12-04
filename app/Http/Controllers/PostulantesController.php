@@ -11,9 +11,10 @@ use App\Turno;
 use App\Documento;
 use App\User;
 use App\Cupo;
+// use \Charts;
+// use Chart;
+// use ConsoleTVs\Charts\Facades\Charts;
 use App\Http\Requests\PostulanteRequest;
-// use Symfony\Component\HttpFoundation\Request;
-
 class PostulantesController extends Controller
 {
     public function __construct()
@@ -48,10 +49,34 @@ class PostulantesController extends Controller
 
         $cupos=Cupo::all();
 
-        // $postulantes->each(function($postulantes){
-        //     $postulantes->carreras;
-        //     $postulantes->turnos;
-        // });
+        $chartjsca = app()->chartjs
+        ->name('pieChartTest')
+        ->type('pie')
+        ->size(['width' => 400, 'height' => 200])
+        ->labels(['CONTADURIA GENERAL', 'SECRETARIADO EJECUTIVO', 'SISTEMAS INFORMÁTICOS', 'ADMINISTRACIÓN DE EMPRESAS', 'COMERCIO EXTERIOR',])
+        ->datasets([
+            [
+                'backgroundColor' => ['#FA3303', '#EED327', '#36A2EB', '#27EBEE', '#2DEE27', ],
+                'hoverBackgroundColor' => ['#FA3303', '#EED327', '#36A2EB', '#27EBEE', '#2DEE27', ],
+                'data' => [$cont, $secr, $sist, $admi, $come]
+            ]
+        ])
+        ->options([]);
+
+        $chartjstu = app()->chartjs
+        ->name('pieChartTest')
+        ->type('pie')
+        ->size(['width' => 200, 'height' => 200])
+        ->labels(['MAÑANA', 'NOCHE',])
+        ->datasets([
+            [
+                'backgroundColor' => ['#36A2EB', '#2DEE27', ],
+                'hoverBackgroundColor' => ['#36A2EB', '#2DEE27', ],
+                'data' => [$mañana, $noche]
+            ]
+        ])
+        ->options([]);
+        // return $chartjs;
 
         $datos = array(
             'carreras' => $carreras,
@@ -67,7 +92,9 @@ class PostulantesController extends Controller
             'mañana' => $mañana,
             'noche' => $noche,
             'cupos' => $cupos,
-            'total' => $total
+            'total' => $total,
+            'chartjsca'=> $chartjsca,
+            'chartjstu'=> $chartjstu
         );
         // return $mañana;
         // return $postulantes;

@@ -14,6 +14,7 @@ use App\Turno;
 use App\Carrera;
 use App\Materia;
 use App\Curso;
+use App\Aula;
 use \Storage;
 use Excel;
 
@@ -101,7 +102,14 @@ class DocentesController extends Controller
         //
     }
 
+    public function curso()
+    {
+        $docentes=Docente::findOrfail(1);
+        $cursos=Curso::all();
 
+        return $cursos->docentes;
+
+    }
 
     public function form_cargar_nota()
     {
@@ -140,7 +148,6 @@ class DocentesController extends Controller
                 $bi_notas->save();
                 // echo $value->id.'<br>';
             }
-
         })->get();
         // return 
     }

@@ -132,7 +132,7 @@
         <li class="header">MENU DOCENTE</li>
         <li><a href="#"><i class="fa fa-newspaper-o"></i> <span>Datos Personales</span></a></li>
         <li><a href="#"><i class="fa fa-newspaper-o"></i> <span>Lista Estudiantes</span></a></li>
-        <li><a href="#"><i class="fa fa-newspaper-o"></i> <span>Subir Notas</span></a></li>
+        <li><a href="{{ route('docentes.form_cargar_nota') }}"><i class="fa fa-newspaper-o"></i> <span>Subir Notas</span></a></li>
         <li><a href="#"><i class="fa fa-info-circle"></i> <span>Horarios</span></a></li>          
         {{-- <li><a href="{{ route('administrativos.index') }}">ADMINISTRATIVOS</a></li>
         <li><a href="{{ route('docentes.index') }}">DOCENTES</a></li> --}}
@@ -144,7 +144,9 @@
       @if (Auth::user()->rol_id==7 || Auth::user()->rol_id==1 )
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU POSTULANTE</li>
-        <li><a href="#"><i class="fa fa-newspaper-o"></i> <span>Datos Personales</span></a></li>
+        @if (Auth::user()->rol_id==7)
+          <li><a href="{{ route('postulantes.show', $postulantes) }}"><i class="fa fa-newspaper-o"></i> <span>Datos Personales</span></a></li>
+        @endif
         {{-- <li><a href="{{ route('administrativos.index') }}">ADMINISTRATIVOS</a></li>
         <li><a href="{{ route('docentes.index') }}">DOCENTES</a></li> --}}
         {{-- <li><a href="{{ route('estudiantes.index') }}">ESTUDIANTES</a></li> --}}

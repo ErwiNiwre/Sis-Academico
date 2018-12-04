@@ -360,15 +360,16 @@ class CreacionBaseDatos extends Migration
 
         Schema::create('documentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('documento_ci')->unique()->nullable();
-            $table->string('certificadoNacimiento')->unique()->nullable();
-            $table->string('tituloBachiller')->unique()->nullable();
-            $table->string('depositoBancario')->unique()->nullable();
+            $table->string('documento_ci')->nullable();
+            $table->string('certificadoNacimiento')->nullable();
+            $table->string('tituloBachiller')->nullable();
+            $table->string('depositoBancario')->nullable();
             $table->bigInteger('postulante_id')->unsigned();
             $table->foreign('postulante_id')->references('id')->on('postulantes');
             $table->timestamps();
             $table->softDeletes();
         });
+
         Schema::create('cupos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('cantidad')->nullable();
@@ -379,6 +380,18 @@ class CreacionBaseDatos extends Migration
             $table->boolean('estado')->default(true);
             $table->foreign('carrera_id')->references('id')->on('carreras');
             $table->foreign('turno_id')->references('id')->on('turnos');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::create('noticias', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre_noticia')->nullable();
+            $table->string('tipo')->nullable();
+            $table->Integer('tamano')->nullable();
+            $table->date('fecha')->nullable();
+            $table->bigInteger('administrativo_id')->unsigned();
+            $table->foreign('administrativo_id')->references('id')->on('administrativos');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -420,5 +433,6 @@ class CreacionBaseDatos extends Migration
         Schema::drop('postulantes');
         Schema::drop('documentos');
         Schema::drop('cupos');
+        Schema::drop('noticias');
     }
 }

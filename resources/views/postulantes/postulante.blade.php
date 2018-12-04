@@ -230,12 +230,22 @@
       <i class="fa fa-registered"> Registrar</i>
     </a>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <div class="box-body">
+    <div class="box-header with-border">
+      <h3 class="box-title">Informes Estadisticos</h3>
+    </div>
+    <div style="width:50%;" class="center-block">
+        {!! $chartjsca->render() !!}
+    </div>
+    <div style="width:50%;">
+        {{-- {!! $chartjstu->render() !!} --}}
+    </div>
+  </div>
 </div>
 
-<div class="col-md-6"> 
-  {{--  {!! $pie_chart->html() !!}  --}}
   {{--  {!! $chart->render() !!}  --}}
-</div>
 
 
   {{--  {!! $pie_chart->script() !!}  --}}

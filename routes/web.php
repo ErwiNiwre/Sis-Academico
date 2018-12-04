@@ -60,6 +60,7 @@ Route::get('estudiantes/{estudiante}/historial','EstudiantesController@historial
 
 // Docente
 Route::get('docentes','DocentesController@index')->name('docentes.index');
+Route::get('docentes/curso','DocentesController@curso')->name('docentes.curso');
 Route::get('docentes/form_cargar_nota','DocentesController@form_cargar_nota')->name('docentes.form_cargar_nota');
 Route::post('docentes/cargar_nota', 'DocentesController@cargar_nota')->name('docentes.cargar_nota');
 Route::get('docentes/create','DocentesController@create')->name('docentes.create');             //Muestra el formulario para crear un nuevo docentes

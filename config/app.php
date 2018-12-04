@@ -182,6 +182,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
 
     ],
 
@@ -237,7 +238,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Charts' => ConsoleTVs\Charts\Charts::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
