@@ -3,9 +3,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>INCOS</b></span>
+      <span class="logo-mini text-center"><h5><b>INCOS</b></h5></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>INCOS</b> - EL ALTO</span>
+      <span class="logo-lg"><strong>INCOS</strong> - EL ALTO</span>
     </a>
 
     <!-- Header Navbar -->

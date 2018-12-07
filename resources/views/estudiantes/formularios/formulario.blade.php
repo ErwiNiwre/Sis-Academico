@@ -92,7 +92,17 @@
             <th colspan="1" class="font-medium text-sm font-bold bg-grey-lightest">SIGLAS</th>
             <th colspan="2" class="font-medium text-sm font-bold bg-grey-lightest">MATERIAS</th>
         </tr> 
-        @foreach ($estudiantes->cursos as $curso)
+        @foreach ($materias as $materia)
+            @foreach($estudiantes->carreras as $carrera)
+                @if ($materia->carrera_id==$carrera->id and $materia->nivel_id==1 and $materia->tipo=='BIMESTRE')
+                <tr>
+                    <th class="text-center"><strong>{{ $materia->sigla }}</strong></th>
+                    <th colspan="2" class="text-justify">{{ $materia->materia }}</th>
+                </tr>
+                @endif
+            @endforeach
+        @endforeach
+        {{--  @foreach ($estudiantes->cursos as $curso)
             @foreach ($cursos as $cu)
                 @if ($curso->pivot->curso_id==$cu->id)
                     @foreach ($aulas as $aula)
@@ -107,7 +117,7 @@
                     @endforeach
                 @endif    
             @endforeach
-        @endforeach
+        @endforeach  --}}
     </thead>
 </table>
 

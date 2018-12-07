@@ -291,6 +291,7 @@
                             <i class="fa fa-calendar"></i>
                         </div>
                         <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" min="1980-01-01" value="{{ isset($postulantes) ? $postulantes->fechaNacimiento : old('fechaNacimiento') }}">
+                        {{-- <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" min="1980-01-01" value="{{ isset($postulantes) ? $postulantes->fechaNacimiento : old('fechaNacimiento') }}"> --}}
                     </div>
                     @if ($errors->has('fechaNacimiento'))
                         <span class="danger alert-danger">

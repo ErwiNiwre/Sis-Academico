@@ -194,18 +194,12 @@
         <div class="form-group">
             <div class="col-md-12">
                 <label>Materias:</label><br>
-                @foreach ($estudiantes->cursos as $curso)
-                    @foreach ($cursos as $cu)
-                        @if ($curso->pivot->curso_id==$cu->id)
-                            @foreach ($aulas as $aula)
-                                @if ($cu->aula_id==$aula->id)
-                                    @foreach ($aula->materias as $materia)
-                                    <div class="col-md-3"><strong>{{ $materia->sigla }}</strong></div> 
-                                        <div class="col-md-9">{{ $materia->materia }}</div>
-                                    @endforeach
-                                @endif
-                            @endforeach
-                        @endif    
+                @foreach ($materias as $materia)
+                    @foreach($estudiantes->carreras as $carrera)
+                        @if ($materia->carrera_id==$carrera->id and $materia->nivel_id==1 and $materia->tipo=='BIMESTRE')
+                            <div class="col-md-3"><strong>{{ $materia->sigla }}</strong></div> 
+                            <div class="col-md-9">{{ $materia->materia }}</div>             
+                        @endif
                     @endforeach
                 @endforeach
             </div>

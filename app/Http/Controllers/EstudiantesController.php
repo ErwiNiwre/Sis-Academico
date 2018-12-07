@@ -315,9 +315,9 @@ class EstudiantesController extends Controller
                         $curso = Curso::where('paralelo_id', $conM)->where('turno_id', 1)->where('carrera_id', 1)->first();
                         $estudiante->cursos()->attach($curso->id, ['fecha_ins' => $fecha_ins, 'estado' => $estado]);
                         $materiasCon = Materia::where('carrera_id', $cupoContaM->carrera_id)->where('nivel_id', $cupoContaM->nivel)->where('tipo', "BIMESTRE")->get();
-                        foreach ($materiasCon as $materia) {
+                        foreach ($materiasCon as $materiacm) {
                             $aulas = Aula::where('id', $conM)->first();
-                            $aulas->materias()->attach($materia->id);
+                            $aulas->materias()->attach($materiacm->id);
                             // Primer Bimestre
                             $bi_notas1 = new Bi_nota;
                             $bi_notas1->asistencia = 0;
@@ -329,7 +329,7 @@ class EstudiantesController extends Controller
                             $bi_notas1->segundo_turno = 0;
                             // $bi_notas1->observacion=null;
                             $bi_notas1->estudiante_id = $estudiante->id;
-                            $bi_notas1->materia_id = $materia->id;
+                            $bi_notas1->materia_id = $materiacm->id;
                             $bi_notas1->periodo_id = 4;
                             $bi_notas1->save();
 
@@ -344,7 +344,7 @@ class EstudiantesController extends Controller
                             $bi_notas2->segundo_turno = 0;
                             // $bi_notas2->observacion=null;
                             $bi_notas2->estudiante_id = $estudiante->id;
-                            $bi_notas2->materia_id = $materia->id;
+                            $bi_notas2->materia_id = $materiacm->id;
                             $bi_notas2->periodo_id = 5;
                             $bi_notas2->save();
 
@@ -359,7 +359,7 @@ class EstudiantesController extends Controller
                             $bi_notas3->segundo_turno = 0;
                             // $bi_notas3->observacion=null;
                             $bi_notas3->estudiante_id = $estudiante->id;
-                            $bi_notas3->materia_id = $materia->id;
+                            $bi_notas3->materia_id = $materiacm->id;
                             $bi_notas3->periodo_id = 6;
                             $bi_notas3->save();
 
@@ -374,7 +374,7 @@ class EstudiantesController extends Controller
                             $bi_notas4->segundo_turno = 0;
                             // $bi_notas4->observacion=null;
                             $bi_notas4->estudiante_id = $estudiante->id;
-                            $bi_notas4->materia_id = $materia->id;
+                            $bi_notas4->materia_id = $materiacm->id;
                             $bi_notas4->periodo_id = 7;
                             $bi_notas4->save();
                         }
@@ -392,6 +392,7 @@ class EstudiantesController extends Controller
                 return "ya fueron registrados";
             }
         }
+        return $materiacm;
 
         // Contabilidad Noche
         $conN = 0;
@@ -695,7 +696,7 @@ class EstudiantesController extends Controller
                         $cursoSec->turno_id = $cupoSecreN->turno_id;
                         $cursoSec->carrera_id = $cupoSecreN->carrera_id;
 
-                        $cursoCon->save();
+                        $cursoSec->save();
 
                         $curso = Curso::where('paralelo_id', $secN)->where('turno_id', 2)->where('carrera_id', 2)->first();
                         $estudiante->cursos()->attach($curso->id, ['fecha_ins' => $fecha_ins, 'estado' => $estado]);
