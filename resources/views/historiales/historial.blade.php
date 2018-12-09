@@ -44,38 +44,38 @@
                                                 <td>
                                                     @foreach($bi_notas as $bi_nota)
                                                         @if ($bi_nota->periodo_id == 4)
-                                                            @foreach ($materias as $mate)
+                                                            {{--  @foreach ($materias as $mate)  --}}
                                                                 @foreach ($periodos as $periodo)
-                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==4 and $bi_nota->materia_id==$mate->id and $materia->id==$mate->id)
+                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==4 and $bi_nota->materia_id==$materia->id)
                                                                     {{ $a=$bi_nota->puntaje_total }}
                                                                     @endif
                                                                 @endforeach
-                                                            @endforeach
+                                                            {{--  @endforeach  --}}
                                                         @endif
                                                     @endforeach
                                                 </td>
                                                 <td>
                                                     @foreach($bi_notas as $bi_nota)
                                                         @if ($bi_nota->periodo_id == 5)
-                                                            @foreach ($materias as $mate)
+                                                            {{--  @foreach ($materias as $mate)  --}}
                                                                 @foreach ($periodos as $periodo)
-                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==5 and $bi_nota->materia_id==$mate->id and $materia->id==$mate->id)
+                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==5 and $bi_nota->materia_id==$materia->id)
                                                                     {{ $b=$bi_nota->puntaje_total }}
                                                                     @endif
                                                                 @endforeach
-                                                            @endforeach
+                                                            {{--  @endforeach  --}}
                                                         @endif
                                                     @endforeach
                                                 </td>
                                                 <td>
                                                     @foreach($bi_notas as $bi_nota)
                                                         @if ($bi_nota->periodo_id == 6)
-                                                            @foreach ($materias as $mate)
+                                                            {{--  @foreach ($materias as $mate)  --}}
                                                                 @foreach ($periodos as $periodo)
-                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==6 and $bi_nota->materia_id==$mate->id and $materia->id==$mate->id)
+                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==6 and $bi_nota->materia_id==$materia->id)
                                                                     {{ $c=$bi_nota->puntaje_total }}
                                                                     @endif
-                                                                @endforeach
+                                                                {{--  @endforeach  --}}
                                                             @endforeach
                                                         @endif
                                                     @endforeach
@@ -83,13 +83,13 @@
                                                 <td>
                                                     @foreach($bi_notas as $bi_nota)
                                                         @if ($bi_nota->periodo_id == 7)
-                                                            @foreach ($materias as $mate)
+                                                            {{--  @foreach ($materias as $mate)  --}}
                                                                 @foreach ($periodos as $periodo)
-                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==7 and $bi_nota->materia_id==$mate->id and $materia->id==$mate->id)
+                                                                    @if ($bi_nota->periodo_id == $periodo->id and $periodo->id==7 and $bi_nota->materia_id==$materia->id)
                                                                     {{ $d=$bi_nota->puntaje_total }}
                                                                     @endif
                                                                 @endforeach
-                                                            @endforeach
+                                                            {{--  @endforeach  --}}
                                                         @endif
                                                     @endforeach
                                                 </td>

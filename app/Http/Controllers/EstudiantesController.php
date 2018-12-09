@@ -1679,7 +1679,7 @@ class EstudiantesController extends Controller
             $carre = $carrera;
         }
 
-        $bi_notas = $estudiantes->bi_notas;
+        $bi_notas = Bi_nota::where('estudiante_id', $estudiantes->id)->get();
         $materias = Materia::all();
         $periodos = Periodo::all();
         $j = 0;
