@@ -38,6 +38,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function username()
+    {
+        return 'usuario';
+    }
+
     public function redirectPath()
     {
         if (method_exists($this, 'redirectTo')) {

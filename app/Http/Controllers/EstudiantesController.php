@@ -392,7 +392,7 @@ class EstudiantesController extends Controller
                 return "ya fueron registrados";
             }
         }
-        return $materiacm;
+        // return $materiacm;
 
         // Contabilidad Noche
         $conN = 0;
